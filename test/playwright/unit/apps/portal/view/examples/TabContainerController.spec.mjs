@@ -344,7 +344,7 @@ const catalog            = JSON.parse(fs.readFileSync(path.join(dataRoot, 'examp
       ],
       newExampleIds = [
           'grid-animated-row-sorting', 'grid-cell-editing', 'grid-container', 'grid-content-sized-rows',
-          'grid-covid', 'grid-header-groups', 'grid-locked-columns', 'grid-nested-record-fields',
+          'grid-countries', 'grid-header-groups', 'grid-locked-columns', 'grid-nested-record-fields',
           'grid-tree', 'grid-value-banding', 'json-grid-container', 'table-cell-editing',
           'table-container', 'table-covid', 'table-nested-record-fields', 'table-store', 'table-performance'
       ],
@@ -731,7 +731,7 @@ test.describe('Portal examples canonical catalog', () => {
             expect(byCls(content, 'portal-example-placeholder'), record.id).toBeUndefined()
         });
 
-        ['grid-covid', 'table-covid', 'json-grid-container'].forEach(id => {
+        ['grid-countries', 'table-covid', 'json-grid-container'].forEach(id => {
             const record  = store.get(id),
                   content = list.createItemContent(record, 0)[0],
                   scope   = byCls(content, 'portal-example-scope');
@@ -742,7 +742,8 @@ test.describe('Portal examples canonical catalog', () => {
         });
 
         expect(store.get('json-grid-container').scope).toContain('static JSON');
-        expect(store.get('grid-covid').scope).toContain('external API');
+        expect(store.get('table-covid').scope).toContain('external API');
+        expect(store.get('grid-countries').scope).toContain('CC BY 4.0');
         expect(list.getBackgroundImageStyle(store.get('grid-tree')).backgroundImage).toContain('grid-tree-14.jpg');
         const uncovered = store.items.find(record => !record.image);
         expect(uncovered).toBeDefined();
